@@ -1,10 +1,5 @@
 export const allEmployees = [
-  {
-    name: 'John Doe',
-    productivity: 85,
-    collaboration: 90,
-    communication: 88
-  },
+  { name: 'John Doe', productivity: 85, collaboration: 90, communication: 88 },
   {
     name: 'Jane Smith',
     productivity: 78,
@@ -42,6 +37,7 @@ export const allEmployees = [
     communication: 87
   },
   {
+    name: 'David Clark',
     productivity: 75,
     collaboration: 79,
     communication: 78
