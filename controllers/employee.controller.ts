@@ -1,3 +1,4 @@
+import axios from 'axios';
 import dayjs from 'dayjs';
 import { Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
@@ -110,6 +111,45 @@ export const ingestDummyEmployeesController = async (
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       success: false,
       message: `Error ingesting the employees: ${(error as { message: string }).message}`,
+      requestId: req.id,
+      error: (error as { message: string }).message,
+      timestamp: dayjs().toDate()
+    });
+  }
+};
+
+export const predictStoryPointByEmployeeController = async (
+  req: ExtendedRequest,
+  res: Response
+): Promise<void> => {
+  try {
+    const output = await axios.post(`http://127.0.0.1:5000/predict`, req.body);
+
+    const { predicted_story_points } = output.data;
+
+    res.status(StatusCodes.OK).json({
+      success: true,
+      message: 'Employee story points predicted successfully',
+      requestId: req.id,
+      data: { predicted_story_points },
+      timestamp: dayjs().toDate()
+    });
+  } catch (error: unknown) {
+    console.log(
+      'Error predicting story points for employee in predictStoryPointByEmployeeController',
+      req.id,
+      error
+    );
+    logger.error(
+      'Error predicting story points for employee in predictStoryPointByEmployeeController',
+      {
+        requestId: req.id,
+        error
+      }
+    );
+    res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      success: false,
+      message: `Error predicting story points for employee: ${(error as { message: string }).message}`,
       requestId: req.id,
       error: (error as { message: string }).message,
       timestamp: dayjs().toDate()

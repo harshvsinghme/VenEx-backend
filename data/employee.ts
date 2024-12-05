@@ -1,4 +1,34 @@
 export const allEmployees = [
+  {
+    name: 'Alice',
+    productivity: 91,
+    collaboration: 87,
+    communication: 94
+  },
+  {
+    name: 'Bob',
+    productivity: 73,
+    collaboration: 76,
+    communication: 74
+  },
+  {
+    name: 'Diana',
+    productivity: 86,
+    collaboration: 90,
+    communication: 89
+  },
+  {
+    name: 'Charlie',
+    productivity: 82,
+    collaboration: 83,
+    communication: 85
+  },
+  {
+    name: 'David',
+    productivity: 77,
+    collaboration: 80,
+    communication: 79
+  },
   { name: 'John Doe', productivity: 85, collaboration: 90, communication: 88 },
   {
     name: 'Jane Smith',
